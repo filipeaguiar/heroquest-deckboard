@@ -12,4 +12,7 @@ export default defineConfig({
     },
   },
   base: "/heroquest-deckboard/",
+  build: {
+    target: "es2015",
+  },
 });
