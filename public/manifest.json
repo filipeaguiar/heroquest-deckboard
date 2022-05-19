@@ -15,12 +15,14 @@
       "src": "screenshots/001.jpg",
       "sizes": "1280x576",
       "type": "image/jpeg",
+      "platform": "narrow",
       "label": "Draw a card"
     },
     {
       "src": "screenshots/002.jpg",
       "sizes": "1280x576",
       "type": "image/jpeg",
+      "platform": "narrow",
       "label": "Gold Card Drawn"
     }
   ],
