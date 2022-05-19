@@ -10,7 +10,20 @@
   "start_url": "index.html",
   "theme_color": "#ffffff",
   "categories": [],
-  "screenshots": [],
+  "screenshots": [
+    {
+      "src": "screenshots/001.jpg",
+      "sizes": "1280x576",
+      "type": "image/jpeg",
+      "label": "Draw a card"
+    },
+    {
+      "src": "screenshots/002.jpg",
+      "sizes": "1280x576",
+      "type": "image/jpeg",
+      "label": "Gold Card Drawn"
+    }
+  ],
   "icons": [
     {
       "src": "icons/71x71-icon.png",
