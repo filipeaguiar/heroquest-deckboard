@@ -1,78 +1,47 @@
-//This is the service worker with the Advanced caching
+/* eslint no-unused-vars: 0 no-restricted-globals: 0 */
+// This is the "Offline copy of pages" wervice worker
 
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
-
-const HTML_CACHE = "html";
-const JS_CACHE = "javascript";
-const STYLE_CACHE = "stylesheets";
-const IMAGE_CACHE = "images";
-const FONT_CACHE = "fonts";
-
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-  }
+// Install stage sets up the index page (home page) in the cache
+// and opens a new cache
+self.addEventListener("install", (event) => {
+  const indexPage = new Request("/");
+  event.waitUntil(
+    fetch(indexPage).then((response) =>
+      caches
+        .open("pwabuilder-offline")
+        .then((cache) => cache.put(indexPage, response))
+    )
+  );
 });
 
-workbox.routing.registerRoute(
-  ({event}) => event.request.destination === 'document',
-  new workbox.strategies.NetworkFirst({
-    cacheName: HTML_CACHE,
-    plugins: [
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 10,
-      }),
-    ],
-  })
-);
+// If any fetch fails, it will look for the request in the cache
+// and serve it from there first
+self.addEventListener("fetch", (event) => {
+  const updateCache = (request) =>
+    caches
+      .open("pwabuilder-offline")
+      .then((cache) =>
+        fetch(request).then((response) => cache.put(request, response))
+      );
 
-workbox.routing.registerRoute(
-  ({event}) => event.request.destination === 'script',
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: JS_CACHE,
-    plugins: [
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 15,
-      }),
-    ],
-  })
-);
+  event.waitUntil(updateCache(event.request));
 
-workbox.routing.registerRoute(
-  ({event}) => event.request.destination === 'style',
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: STYLE_CACHE,
-    plugins: [
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 15,
-      }),
-    ],
-  })
-);
-
-workbox.routing.registerRoute(
-  ({event}) => event.request.destination === 'image',
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: IMAGE_CACHE,
-    plugins: [
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 15,
-      }),
-    ],
-  })
-);
-
-workbox.routing.registerRoute(
-  ({event}) => event.request.destination === 'font',
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: FONT_CACHE,
-    plugins: [
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 15,
-      }),
-    ],
-  })
-);
-
-
-
+  event.respondWith(
+    fetch(event.request).catch((error) =>
+      // Check to see if you have it in the cache
+      // Return response
+      // If not in the cache, then return error page
+      caches
+        .open("pwabuilder-offline")
+        .then((cache) =>
+          cache
+            .match(event.request)
+            .then((matching) =>
+              !matching || matching.status === 404
+                ? Promise.reject(new Error("no-match"))
+                : matching
+            )
+        )
+    )
+  );
+});

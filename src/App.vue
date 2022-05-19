@@ -1,6 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+if (window.location.protocol === 'https:' && !navigator.serviceWorker.controller) {
+  navigator.serviceWorker.register('pwabuilder-sw.js', {
+    scope: './'
+  })
+}
+
 type Card = {
   name: string,
   description: string,
