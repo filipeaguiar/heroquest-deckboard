@@ -1,3 +1,3 @@
 #!/usr/bin/sh
 
-git subtree push --prefix dist master gh-pages
+git subtree push --prefix dist origin gh-pages
