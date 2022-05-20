@@ -140,22 +140,22 @@ export default defineComponent({
             returnable: true
           },
           {
-            name: "ouro",
+            name: "Ouro",
             description: "Você encontrou uma pedra solta e tirou-a da parede. Atrás dela, você descobriu uma bolsa de couro embrulhada num pedaço de trapo. Ao examinar dentro dela, você achou 25 moedas de ouro. Anote esse valor na sua ficha. NÃO RECOLOQUE ESTA CARTA NO MONTE.",
             image: goldImage,
             returnable: false
           }, {
-            name: "ouro",
+            name: "Ouro",
             description: "Você encontrou uma pedra solta e tirou-a da parede. Atrás dela, você descobriu uma bolsa de couro embrulhada num pedaço de trapo. Ao examinar dentro dela, você achou 25 moedas de ouro. Anote esse valor na sua ficha. NÃO RECOLOQUE ESTA CARTA NO MONTE.",
             image: goldImage,
             returnable: false
           }, {
-            name: "ouro",
+            name: "Ouro",
             description: "Você encontrou uma pedra solta e tirou-a da parede. Atrás dela, você descobriu uma bolsa de couro embrulhada num pedaço de trapo. Ao examinar dentro dela, você achou 25 moedas de ouro. Anote esse valor na sua ficha. NÃO RECOLOQUE ESTA CARTA NO MONTE.",
             image: goldImage,
             returnable: false
           }, {
-            name: "ouro",
+            name: "Ouro",
             description: "Você encontrou uma pedra solta e tirou-a da parede. Atrás dela, você descobriu uma bolsa de couro embrulhada num pedaço de trapo. Ao examinar dentro dela, você achou 25 moedas de ouro. Anote esse valor na sua ficha. NÃO RECOLOQUE ESTA CARTA NO MONTE.",
             image: goldImage,
             returnable: false
