@@ -1,5 +1,5 @@
 {
-  "background_color": "#F9A825",
+  "background_color": "#FFFFFF",
   "description": "",
   "dir": "ltr",
   "orientation": "portrait",
@@ -8,7 +8,7 @@
   "scope": "/heroquest-deckboard/",
   "short_name": "HQ Deckboard",
   "start_url": "index.html",
-  "theme_color": "#F57F17",
+  "theme_color": "#FFFFFF",
   "categories": [
     "tabletop",
     "games"
